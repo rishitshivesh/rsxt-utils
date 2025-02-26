@@ -25,7 +25,7 @@
     "generate:types": "tsc --project tsconfig.json"
   },
   "dependencies": {
-    "@rsxt/react-listener": "^1.0.10"
+    "@rsxt/react-listener": "^1.0.11"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
