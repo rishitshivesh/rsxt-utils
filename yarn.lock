@@ -1547,7 +1547,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@rsxt/keypress@workspace:packages/keypress"
   dependencies:
-    "@rsxt/react-listener": "npm:^1.0.10"
+    "@rsxt/react-listener": "npm:^1.0.11"
     "@testing-library/jest-dom": "npm:^6.6.3"
     "@testing-library/react": "npm:^14.0.0"
     "@types/jest": "npm:^29.5.14"
@@ -1566,13 +1566,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rsxt/react-listener@npm:^1.0.10":
-  version: 1.0.10
-  resolution: "@rsxt/react-listener@npm:1.0.10"
+"@rsxt/react-listener@npm:^1.0.11":
+  version: 1.0.11
+  resolution: "@rsxt/react-listener@npm:1.0.11"
   peerDependencies:
     react: "*"
     react-dom: ">=16.8.0 <20.0.0"
-  checksum: 10c0/e14cd7e2d8723c893aaf6613eeac401c0dcbc7aba84ae99ac4477678cbdc7d34e4fee99b5e73fb54643edd774ce4cdf7fe53bb7e2d9585a9b148a2f14729a3ce
+  checksum: 10c0/3a88529883200edae8157af86d352f214401ec8a79c761618013d173d1e3d60dc0169c1e8d2be849d63431c1fbd34ebd9cce29101ee9b2b2498391bdcba6ff79
   languageName: node
   linkType: hard
 
