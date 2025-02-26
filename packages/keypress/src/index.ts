@@ -102,8 +102,6 @@ export function useKeyboardShortcut(
   );
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-
     useListener<Window, KeyboardEvent>(window, "keydown", handleKeyPress, {
       enabled,
     });

@@ -42,6 +42,7 @@ class Logger {
     console.log(
       `%c${icons[level]} ${timestamp} ${contextLabel} %c${message}`,
       logStyles[level],
+      "color: #fff;",
       ...(data ? [data] : []) // ✅ Ensures proper object logging without string conversion
     );
   }
