@@ -1543,9 +1543,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@rsxt/react-keyboard-shortcuts@workspace:packages/react-keyboard-shortcuts":
+"@rsxt/keypress@workspace:packages/keypress":
   version: 0.0.0-use.local
-  resolution: "@rsxt/react-keyboard-shortcuts@workspace:packages/react-keyboard-shortcuts"
+  resolution: "@rsxt/keypress@workspace:packages/keypress"
   dependencies:
     "@rsxt/react-listener": "npm:^1.0.10"
     "@testing-library/jest-dom": "npm:^6.6.3"

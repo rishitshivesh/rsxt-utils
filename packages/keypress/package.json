@@ -1,5 +1,5 @@
 {
-  "name": "@rsxt/react-keyboard-shortcuts",
+  "name": "@rsxt/keypress",
   "version": "1.0.2",
   "main": "./lib/cjs/index.js",
   "module": "./lib/index.esm.js",

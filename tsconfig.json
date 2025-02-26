@@ -4,9 +4,7 @@
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@rsxt/react-keyboard-shortcuts": [
-        "packages/react-keyboard-shortcuts/src"
-      ]
+      "@rsxt/keypress": ["packages/keypress/src"]
     }
   }
 }

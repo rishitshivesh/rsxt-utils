@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useListener } from "@rsxt/react-listener";
 import { logger } from "@rsxt/debugger";
 
@@ -101,7 +101,11 @@ export function useKeyboardShortcut(
     [keys, callback, enabled, preventDefault, ordered, debug]
   );
 
-  useListener<Window, KeyboardEvent>(window, "keydown", handleKeyPress, {
-    enabled,
-  });
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    useListener<Window, KeyboardEvent>(window, "keydown", handleKeyPress, {
+      enabled,
+    });
+  }, [window, handleKeyPress, enabled]);
 }

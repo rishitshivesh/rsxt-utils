@@ -1,6 +1,6 @@
-# @rsxt/react-keyboard-shortcuts
+# @rsxt/keypress
 
-🚀 **@rsxt/react-keyboard-shortcuts** is a powerful and flexible React hook for handling keyboard shortcuts, supporting:
+🚀 **@rsxt/keypress** is a powerful and flexible React hook for handling keyboard shortcuts, supporting:
 
 ✅ **Single and Multi-Key Shortcuts** (`"Ctrl+S"`, `"Shift+D"`, etc.)
 ✅ **Ordered & Unordered Key Combinations**
@@ -13,13 +13,13 @@
 ## 📦 Installation
 
 ```sh
-yarn add @rsxt/react-keyboard-shortcuts
+yarn add @rsxt/keypress
 ```
 
 OR
 
 ```sh
-npm install @rsxt/react-keyboard-shortcuts
+npm install @rsxt/keypress
 ```
 
 ---
@@ -29,7 +29,7 @@ npm install @rsxt/react-keyboard-shortcuts
 ### **1️⃣ Basic Keyboard Shortcut**
 
 ```tsx
-import { useKeyboardShortcut } from "@rsxt/react-keyboard-shortcuts";
+import { useKeyboardShortcut } from "@rsxt/keypress";
 
 useKeyboardShortcut("a", () => {
   console.log("Key 'A' pressed!");
