@@ -1,0 +1,17 @@
+{
+  "name": "rsxt-utils",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "lint": "lerna run lint",
+    "publish": "lerna publish"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "lerna": "8.2.0"
+  }
+}

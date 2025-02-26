@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@rsxt/react-keyboard-shortcuts": [
+        "packages/react-keyboard-shortcuts/src"
+      ]
+    }
+  }
+}
