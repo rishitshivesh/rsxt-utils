@@ -4,7 +4,6 @@ const logStyles = {
   error: "color: #F44336; font-weight: bold;",
   success: "color: #4CAF50; font-weight: bold;",
   debug: "color: #9C27B0; font-weight: bold;",
-  default: "color: #000; font-weight: bold;",
 };
 
 const icons = {
@@ -13,22 +12,15 @@ const icons = {
   error: "❌",
   success: "✅",
   debug: "🐞",
-  default: "📝",
 };
 
-export type LogLevel =
-  | "info"
-  | "warn"
-  | "error"
-  | "success"
-  | "debug"
-  | "default";
+export type LogLevel = "info" | "warn" | "error" | "success" | "debug";
 
 export interface DebugOptions {
   showTimestamp?: boolean;
 }
 
-export class Logger {
+class Logger {
   private context?: string;
 
   constructor(context?: string) {
@@ -50,24 +42,26 @@ export class Logger {
     console.log(
       `%c${icons[level]} ${timestamp} ${contextLabel} %c${message}`,
       logStyles[level],
-      logStyles.default,
-      data || ""
+      "color: #000;",
+      ...(data ? [data] : []) // ✅ Ensures proper object logging without string conversion
     );
   }
 
-  public info = (message: string, data?: any, options?: DebugOptions) =>
+  public info(message: string, data?: any, options?: DebugOptions) {
     this.log("info", message, data, options);
-  public warn = (message: string, data?: any, options?: DebugOptions) =>
+  }
+  public warn(message: string, data?: any, options?: DebugOptions) {
     this.log("warn", message, data, options);
-  public error = (message: string, data?: any, options?: DebugOptions) =>
+  }
+  public error(message: string, data?: any, options?: DebugOptions) {
     this.log("error", message, data, options);
-  public success = (message: string, data?: any, options?: DebugOptions) =>
+  }
+  public success(message: string, data?: any, options?: DebugOptions) {
     this.log("success", message, data, options);
-  public debug = (message: string, data?: any, options?: DebugOptions) =>
+  }
+  public debug(message: string, data?: any, options?: DebugOptions) {
     this.log("debug", message, data, options);
-
-  public logDefault = (message: string, data?: any, options?: DebugOptions) =>
-    this.log("default", message, data, options);
+  }
 
   public static createLogger(context: string) {
     return new Logger(context);
@@ -75,9 +69,11 @@ export class Logger {
 }
 
 const defaultLogger = new Logger();
-export const logger = Object.assign(
-  (message: string, data?: any, options?: DebugOptions) =>
-    defaultLogger.logDefault(message, data, options),
-  defaultLogger
-);
-export default logger;
+
+const defaultInfoLogger = (
+  message: string,
+  data?: any,
+  options?: DebugOptions
+) => defaultLogger.info(message, data, options);
+export { Logger, defaultLogger as logger };
+export default defaultInfoLogger;
