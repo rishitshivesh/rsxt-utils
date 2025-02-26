@@ -4,6 +4,14 @@
   "main": "./lib/cjs/index.js",
   "module": "./lib/index.esm.js",
   "types": "./lib/index.d.ts",
+  "author": {
+    "name": "Rishit Shivesh",
+    "email": "me@rishit.co.in"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rishitshivesh/rsxt-utils"
+  },
   "files": [
     "lib/"
   ],
