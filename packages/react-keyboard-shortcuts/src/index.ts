@@ -1,73 +1,104 @@
 import { useCallback, useRef } from "react";
 import { useListener } from "@rsxt/react-listener";
+import { logger } from "@rsxt/debugger";
 
 interface ShortcutOptions {
   preventDefault?: boolean;
   enabled?: boolean;
+  ordered?: boolean;
+  debug?: boolean;
+}
+
+function conditionalDebug(
+  debug: boolean,
+  message: string,
+  data?: Record<string, any>
+) {
+  if (debug) {
+    logger.debug(message, data);
+  }
 }
 
 type KeyCombo = string | string[];
 
+// 🔹 Normalize key input (ensures consistency in key comparison)
+const normalizeKey = (key: string) =>
+  key.length === 1 ? key.toLowerCase() : key;
+
 /**
  * `useKeyboardShortcut` - A React hook for handling keyboard shortcuts.
  *
- * @param keys - The key(s) to listen for, e.g., `"A"`, `"Ctrl+S"`, or `["Shift+A", "Ctrl+Z"]`.
+ * @param keys - The key(s) to listen for, e.g., "a", "ctrl+s", or ["Shift+a", "Ctrl+z"].
  * @param callback - The function to call when the shortcut is pressed.
- * @param options - Configuration options (`preventDefault`, `enabled`).
+ * @param options - Configuration options (`preventDefault`, `enabled`, `ordered`, `debug`).
  */
 export function useKeyboardShortcut(
   keys: KeyCombo,
   callback: (event: KeyboardEvent) => void,
   options: ShortcutOptions = {}
 ) {
-  const { preventDefault = true, enabled = true } = options;
+  const {
+    preventDefault = true,
+    enabled = true,
+    ordered = false,
+    debug = false,
+  } = options;
   const sequenceRef = useRef<string[]>([]);
 
   const handleKeyPress = useCallback(
     (event: KeyboardEvent) => {
       if (!enabled) return;
 
-      // Capture pressed keys
-      const normalizeKey = (key: string) =>
-        key.length === 1 ? key.toUpperCase() : key;
-
       const pressedKeys = [
-        event.ctrlKey ? "Ctrl" : "",
-        event.metaKey ? "Meta" : "",
-        event.altKey ? "Alt" : "",
-        event.shiftKey ? "Shift" : "",
+        event.ctrlKey ? "ctrl" : "",
+        event.metaKey ? "meta" : "",
+        event.altKey ? "alt" : "",
+        event.shiftKey ? "shift" : "",
         normalizeKey(event.key),
       ]
         .filter(Boolean)
         .join("+");
 
-      console.log({
-        pressedKeys,
-      });
+      conditionalDebug(debug, "Key Pressed", { key: pressedKeys });
 
       if (Array.isArray(keys)) {
-        if (keys.includes(pressedKeys)) {
-          if (preventDefault) event.preventDefault();
-          callback(event);
+        const normalizedKeys = keys.map((k) => k.toLowerCase());
+
+        if (ordered) {
+          if (normalizedKeys.join(" ") === sequenceRef.current.join(" ")) {
+            if (preventDefault) event.preventDefault();
+            conditionalDebug(debug, "Shortcut Triggered (Ordered)", {
+              shortcut: keys,
+            });
+
+            callback(event);
+            sequenceRef.current = [];
+          }
+        } else {
+          if (normalizedKeys.every((k) => sequenceRef.current.includes(k))) {
+            if (preventDefault) event.preventDefault();
+            conditionalDebug(debug, "Shortcut Triggered (Unordered)", {
+              shortcut: keys,
+            });
+            callback(event);
+            sequenceRef.current = [];
+          }
         }
       } else {
-        // Multi-key sequence support
         sequenceRef.current.push(pressedKeys);
-        const sequenceString = sequenceRef.current.join(" ");
-
-        if (sequenceString === keys.toUpperCase()) {
+        if (keys.toLowerCase() === sequenceRef.current.join(" ")) {
           if (preventDefault) event.preventDefault();
+          conditionalDebug(debug, "Shortcut Triggered", { shortcut: keys });
           callback(event);
-          sequenceRef.current = []; // Reset after trigger
-        }
-
-        // Clear sequence if no key is pressed for 1 second
-        setTimeout(() => {
           sequenceRef.current = [];
-        }, 1000);
+        }
       }
+
+      setTimeout(() => {
+        sequenceRef.current = [];
+      }, 1000);
     },
-    [keys, callback, enabled, preventDefault]
+    [keys, callback, enabled, preventDefault, ordered, debug]
   );
 
   useListener<Window, KeyboardEvent>(window, "keydown", handleKeyPress, {

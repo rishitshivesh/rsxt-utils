@@ -7,9 +7,17 @@
   "files": [
     "lib/"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0",
   "peerDependencies": {
     "react": ">=16.8.0 <20.0.0"
+  },
+  "author": {
+    "name": "Rishit Shivesh",
+    "email": "me@rishit.co.in"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rishitshivesh/rsxt-utils"
   },
   "scripts": {
     "build": "node ../../esbuild.config.mjs",
