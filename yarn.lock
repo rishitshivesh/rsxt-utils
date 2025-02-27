@@ -1538,8 +1538,6 @@ __metadata:
     react-dom: "npm:^19.0.0"
     ts-jest: "npm:^29.2.6"
     typescript: "npm:^5.7.3"
-  peerDependencies:
-    react: ">=16.8.0 <20.0.0"
   languageName: unknown
   linkType: soft
 
@@ -1575,6 +1573,32 @@ __metadata:
   checksum: 10c0/3a88529883200edae8157af86d352f214401ec8a79c761618013d173d1e3d60dc0169c1e8d2be849d63431c1fbd34ebd9cce29101ee9b2b2498391bdcba6ff79
   languageName: node
   linkType: hard
+
+"@rsxt/store@workspace:packages/store":
+  version: 0.0.0-use.local
+  resolution: "@rsxt/store@workspace:packages/store"
+  dependencies:
+    "@rsxt/react-listener": "npm:^1.0.11"
+    "@testing-library/jest-dom": "npm:^6.6.3"
+    "@testing-library/react": "npm:^14.0.0"
+    "@types/crypto-js": "npm:^4"
+    "@types/jest": "npm:^29.5.14"
+    "@types/node": "npm:^22.13.5"
+    "@types/react": "npm:^19.0.10"
+    "@types/react-dom": "npm:^19.0.4"
+    crypto-js: "npm:^4.2.0"
+    esbuild: "npm:^0.25.0"
+    flatted: "npm:^3.3.3"
+    jest: "npm:^29.5.14"
+    jest-environment-jsdom: "npm:^29.7.0"
+    react: "npm:^19.0.0"
+    react-dom: "npm:^19.0.0"
+    ts-jest: "npm:^29.2.6"
+    typescript: "npm:^5.7.3"
+  peerDependencies:
+    react: ">=16.8.0 <20.0.0"
+  languageName: unknown
+  linkType: soft
 
 "@sigstore/bundle@npm:^2.3.2":
   version: 2.3.2
@@ -1782,6 +1806,13 @@ __metadata:
   dependencies:
     "@babel/types": "npm:^7.20.7"
   checksum: 10c0/7ba7db61a53e28cac955aa99af280d2600f15a8c056619c05b6fc911cbe02c61aa4f2823299221b23ce0cce00b294c0e5f618ec772aa3f247523c2e48cf7b888
+  languageName: node
+  linkType: hard
+
+"@types/crypto-js@npm:^4":
+  version: 4.2.2
+  resolution: "@types/crypto-js@npm:4.2.2"
+  checksum: 10c0/760a2078f36f2a3a1089ef367b0d13229876adcf4bcd6e8824d00d9e9bfad8118dc7e6a3cc66322b083535e12be3a29044ccdc9603bfb12519ff61551a3322c6
   languageName: node
   linkType: hard
 
@@ -2964,6 +2995,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"crypto-js@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "crypto-js@npm:4.2.0"
+  checksum: 10c0/8fbdf9d56f47aea0794ab87b0eb9833baf80b01a7c5c1b0edc7faf25f662fb69ab18dc2199e2afcac54670ff0cd9607a9045a3f7a80336cccd18d77a55b9fdf0
+  languageName: node
+  linkType: hard
+
 "css.escape@npm:^1.5.1":
   version: 1.5.1
   resolution: "css.escape@npm:1.5.1"
@@ -3746,6 +3784,13 @@ __metadata:
   bin:
     flat: cli.js
   checksum: 10c0/f178b13482f0cd80c7fede05f4d10585b1f2fdebf26e12edc138e32d3150c6ea6482b7f12813a1091143bad52bb6d3596bca51a162257a21163c0ff438baa5fe
+  languageName: node
+  linkType: hard
+
+"flatted@npm:^3.3.3":
+  version: 3.3.3
+  resolution: "flatted@npm:3.3.3"
+  checksum: 10c0/e957a1c6b0254aa15b8cce8533e24165abd98fadc98575db082b786b5da1b7d72062b81bfdcd1da2f4d46b6ed93bec2434e62333e9b4261d79ef2e75a10dd538
   languageName: node
   linkType: hard
 
