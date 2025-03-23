@@ -28,7 +28,7 @@ export const useKeyPress = (
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const logDebug = (message: string, data?: any) => {
-    if (debug) logger.debug(message, data);
+    logger.debug(message, data, { enabled: debug });
   };
 
   const normalizeKey = (key: string) =>
@@ -52,17 +52,26 @@ export const useKeyPress = (
         const normalizedKeys = keys.map(normalizeKey);
         const lastKeyIndex = sequenceRef.current.length;
 
+        // Check if modifiers match exactly what's specified
+        // If a modifier is undefined, it should NOT be pressed
         const isModifiersMatching =
-          (ctrl === undefined || modifierKeys.ctrl === ctrl) &&
-          (meta === undefined || modifierKeys.meta === meta) &&
-          (alt === undefined || modifierKeys.alt === alt) &&
-          (shift === undefined || modifierKeys.shift === shift);
+          (ctrl === undefined
+            ? !modifierKeys.ctrl
+            : modifierKeys.ctrl === ctrl) &&
+          (meta === undefined
+            ? !modifierKeys.meta
+            : modifierKeys.meta === meta) &&
+          (alt === undefined ? !modifierKeys.alt : modifierKeys.alt === alt) &&
+          (shift === undefined
+            ? !modifierKeys.shift
+            : modifierKeys.shift === shift);
+
+        if (!isModifiersMatching) {
+          return; // Skip this combination if modifiers don't match
+        }
 
         if (ordered) {
-          if (
-            normalizedKeys[lastKeyIndex] === pressedKey &&
-            isModifiersMatching
-          ) {
+          if (normalizedKeys[lastKeyIndex] === pressedKey) {
             sequenceRef.current.push(pressedKey);
             logDebug("Sequence Progress", { sequence: sequenceRef.current });
 
@@ -73,16 +82,13 @@ export const useKeyPress = (
               sequenceRef.current = [];
             }
           } else {
-            sequenceRef.current = []; //Reset if sequence breaks
+            sequenceRef.current = []; // Reset if sequence breaks
           }
         } else {
-          //Handle simultaneous multi-key combinations (like "Ctrl+A+B")
+          // Handle simultaneous multi-key combinations (like "Ctrl+A+B")
           const pressedKeys = new Set([...sequenceRef.current, pressedKey]);
 
-          if (
-            normalizedKeys.every((key) => pressedKeys.has(key)) &&
-            isModifiersMatching
-          ) {
+          if (normalizedKeys.every((key) => pressedKeys.has(key))) {
             if (preventDefault) event.preventDefault();
             logDebug("Unordered Shortcut Triggered", { shortcut: keys });
             callback(event);
@@ -91,7 +97,7 @@ export const useKeyPress = (
         }
       });
 
-      //Reset sequence if no further key press in 1 second
+      // Reset sequence if no further key press in 1 second
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
       timeoutRef.current = setTimeout(() => {
         sequenceRef.current = [];

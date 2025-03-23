@@ -1,6 +1,7 @@
 export type LogLevel = "info" | "warn" | "error" | "success" | "debug";
 export interface DebugOptions {
     showTimestamp?: boolean;
+    enabled?: boolean;
 }
 declare class Logger {
     private context?;

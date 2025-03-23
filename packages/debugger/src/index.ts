@@ -18,6 +18,7 @@ export type LogLevel = "info" | "warn" | "error" | "success" | "debug";
 
 export interface DebugOptions {
   showTimestamp?: boolean;
+  enabled?: boolean;
 }
 
 class Logger {
@@ -33,18 +34,19 @@ class Logger {
     data?: any,
     options: DebugOptions = {}
   ) {
-    const { showTimestamp = true } = options;
+    const { showTimestamp = true, enabled = true } = options;
     const timestamp = showTimestamp
       ? `[${new Date().toLocaleTimeString()}]`
       : "";
     const contextLabel = this.context ? `[${this.context}]` : "";
 
-    console.log(
-      `%c${icons[level]} ${timestamp} ${contextLabel} %c${message}`,
-      logStyles[level],
-      "color: #fff;",
-      ...(data ? [data] : []) // ✅ Ensures proper object logging without string conversion
-    );
+    if (enabled)
+      console.log(
+        `%c${icons[level]} ${timestamp} ${contextLabel} %c${message}`,
+        logStyles[level],
+        "color: #fff;",
+        ...(data ? [data] : []) // ✅ Ensures proper object logging without string conversion
+      );
   }
 
   public info(message: string, data?: any, options?: DebugOptions) {
