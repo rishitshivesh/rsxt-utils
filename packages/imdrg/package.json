@@ -1,0 +1,44 @@
+{
+  "name": "@rsxt/imdrg",
+  "version": "1.0.9",
+  "main": "./lib/esm/index.js",
+  "module": "./lib/index.esm.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "lib/"
+  ],
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "react": ">=16.8.0 <20.0.0"
+  },
+  "author": {
+    "name": "Rishit Shivesh",
+    "email": "me@rishit.co.in"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rishitshivesh/rsxt-utils"
+  },
+  "scripts": {
+    "build": "node ../../esbuild.config.mjs",
+    "dev": "tsup --watch",
+    "test": "jest --config ../../jest.config.js",
+    "generate:types": "tsc --project tsconfig.json",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "esbuild": "^0.25.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.7.3"
+  },
+  "packageManager": "yarn@4.3.1"
+}
