@@ -1,6 +1,6 @@
 {
   "name": "@rsxt/imdrg",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": "./lib/esm/index.js",
   "module": "./lib/index.esm.js",
   "types": "./lib/index.d.ts",
