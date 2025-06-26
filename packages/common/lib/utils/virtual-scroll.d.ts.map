@@ -1,0 +1,1 @@
+{"version":3,"file":"virtual-scroll.d.ts","sourceRoot":"","sources":["../../src/utils/virtual-scroll.ts"],"names":[],"mappings":"AAEA,KAAK,OAAO,GAAG;IACX,UAAU,EAAE,MAAM,CAAC;IACnB,QAAQ,CAAC,EAAE,MAAM,CAAC;CACrB,CAAC;AAEF,wBAAgB,gBAAgB,CAAC,CAAC,EAAE,IAAI,EAAE,CAAC,EAAE,EAAE,OAAO,EAAE,OAAO;;;;;EA6B9D"}

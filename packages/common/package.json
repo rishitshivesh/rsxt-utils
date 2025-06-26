@@ -1,0 +1,45 @@
+{
+  "name": "@rsxt/common",
+  "version": "0.0.1",
+  "main": "./lib/esm/index.js",
+  "module": "./lib/index.esm.js",
+  "types": "./lib/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Rishit Shivesh",
+    "email": "me@rishit.co.in"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rishitshivesh/rsxt-utils"
+  },
+  "files": [
+    "lib/"
+  ],
+  "license": "Apache-2.0",
+  "scripts": {
+    "build": "node ../../esbuild.config.mjs",
+    "test": "jest --config ../../jest.config.js",
+    "generate:types": "tsc --project tsconfig.json"
+  },
+  "peerDependencies": {
+    "react": ">18.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^14.0.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.5",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "esbuild": "^0.25.0",
+    "jest": "^29.5.14",
+    "jest-environment-jsdom": "^29.7.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "ts-jest": "^29.2.6",
+    "typescript": "^5.7.3"
+  }
+}
